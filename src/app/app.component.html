@@ -1,21 +1,56 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
   <div>
     <label>
       Name:
       <input formControlName="name" placeholder="Your name">
     </label>
+    <div *ngIf="myForm.get('name').invalid && (myForm.get('name').dirty || myForm.get('name').touched)">
+      Please provide a name.
+    </div>
   </div>
   <div>
     <label>
       Email:
       <input formControlName="email" placeholder="Your email">
     </label>
+    <div *ngIf="myForm.get('email').invalid && (myForm.get('email').dirty || myForm.get('email').touched)">
+      Please provide a valid email address.
+    </div>
   </div>
   <div>
     <label>
       Message:
       <input formControlName="message" placeholder="Your message">
     </label>
+    <div *ngIf="myForm.get('message').invalid && (myForm.get('message').dirty || myForm.get('message').touched)">
+      Messages must be at least 15 characters long.
+    </div>
   </div>
-  <button type="submit">Send</button>
+  <button type="submit" [disabled]="myForm.invalid">Send</button>
+</form> -->
+
+
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)" class="custom-form">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" formControlName="name" placeholder="Your name" class="form-control">
+    <div *ngIf="myForm.get('name').invalid && (myForm.get('name').dirty || myForm.get('name').touched)" class="error-message">
+      Please provide a name.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" placeholder="Your email" class="form-control">
+    <div *ngIf="myForm.get('email').invalid && (myForm.get('email').dirty || myForm.get('email').touched)" class="error-message">
+      Please provide a valid email address.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="message">Message:</label>
+    <textarea id="message" formControlName="message" placeholder="Your message" class="form-control"></textarea>
+    <div *ngIf="myForm.get('message').invalid && (myForm.get('message').dirty || myForm.get('message').touched)" class="error-message">
+      Messages must be at least 15 characters long.
+    </div>
+  </div>
+  <button type="submit" [disabled]="myForm.invalid" class="submit-button">Send</button>
 </form>
